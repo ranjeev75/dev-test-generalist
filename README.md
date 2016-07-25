@@ -55,12 +55,10 @@ Follow these instructions to get the test database working on your machine:
 docker rm --force jlmongo
 docker run -d --name jlmongo -p 27017:27017 jujhars13/dev-test-generalist-mongo:latest
 ```
-
 4. Once the container is up and running. Import the bike schema by running this command in
 ```
 docker exec jlmongo mongoimport --collection bike /schema/bike.json --jsonArray
 ```
-
 5. Test your mongo db works by showing all the records in the `bike` collection in the default `test` db:
 ```
 docker exec jlmongo mongo --eval "db.getCollection('bike').find({})"
