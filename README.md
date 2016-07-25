@@ -62,12 +62,12 @@ docker exec jlmongo mongoimport --collection bike /schema/bike.json --jsonArray
 ```
 
 **Notes**
-- Test your db works by `docker exec jlmongo mongo --eval "db.getCollection('bike').find({})"` 
+- You can test if your db works by running `docker exec jlmongo mongo --eval "db.getCollection('bike').find({})"` 
 - If you shutdown your machine or do something bad to your database, simply trash your db and follow the instructions again in part 3
 - There is no username and password for your local db
 - The default database is `test`, the default collection is `bike` with the data in it
 - The local Mongo instance sits on the default **TCP:27017** port you may have to tweak this if you're already running a local Mongo instance of your own
-- We suggest you use a Mongo db browser tool like [Robomongo](https://robomongo.org/)
+- We suggest you use a Mongo GUI tool like [Robomongo](https://robomongo.org/) to make your life easier 
 
 
 ### Assumptions:
