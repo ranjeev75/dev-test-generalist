@@ -71,7 +71,7 @@ docker exec jlmongo mongoimport --collection bike /schema/bike.json --jsonArray
 
 
 ### Assumptions:
-- Your api must output JSON in it's response
+- API API must output JSON in it's responsees
 - You must include installation and setup instructions in your **README.md**
 - You must include the usage instructions for GET, POST and DELETE as CURL based examples
 - Please list any other assumptions you may have made
