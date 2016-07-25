@@ -47,9 +47,7 @@ To give you an idea of the documents (records) of what's in the Mongo `bike` col
 Follow these instructions to get the test database working on your machine:
 
 1. Ensure you have the latest version of Docker installed on your machine (Native Docker for Windows, and Docker for Mac that no longer use docker-machine) [https://docs.docker.com/engine/installation/](https://docs.docker.com/engine/installation/):
-
 2. Ensure the docker service is running on your machine and you can connect to it using the `docker info` command
-
 3. Get Mongo running as a service on your machine by typing this command into a new console window.  We'll remove any old containers called jlmongo first, don't worry if this errors 
 ```
 docker rm --force jlmongo
