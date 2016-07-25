@@ -3,7 +3,7 @@
 Here's a back-end oriented assessment that we'd like you to complete in approx one week.
 
 ## The task
-We estimate that this task will take about **6-10 hours** of contiguous development.  Feel free to develop in a non-contiguous manner.  
+We estimate that this task will take about **6-10 hours** of contiguous development.  Feel free to develop in a non-contiguous manner.
 If you start to go way over time then just submit what you have and create a list in your project's **README.md** of anything else that would have liked to add/do given the time.
 
 
@@ -89,8 +89,8 @@ Your application will be assessed on the following criteria (in order of importa
 - Quality of setup instructions in your **README.md**
 - Quality of api documentation in your **README.md**
 - Maintainability
-- *bonus points* if you unit test your models
-- *bonus points* if you can host the api code in a docker container and link it to the mongo docker container
+- *bonus points* if you unit test your models and include test instructions
+- *bonus points* if you can host the api code in a docker container and link it to the Mongo Docker container
 
 We're trying to see your thought processes with this task. What's more important to us is how you approach the task, rather than the actual final output itself.
 
