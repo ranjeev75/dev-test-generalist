@@ -31,7 +31,7 @@ I would like API endpoints that models bikes (see Sample Bike Schema)
 - I would like to interact with the API using CURL or postman
 
 #### Sample Bike schema
-To give you an idea of the documents (records) of what's in the Mongo `bike` in the `local` db.  This is a sample schema for bikes, you can add/modify fields as you see fit.
+To give you an idea of the documents (records) of what's in the Mongo `bike` collection in the `test` db.  This is a sample schema for bikes, you can add/modify fields as you see fit:
 
 ```
 {
@@ -50,29 +50,28 @@ Follow these instructions to get the test database working on your machine:
 
 2. Ensure the docker service is running on your machine and you can connect to it using the `docker info` command
 
-3. Get Mongo running as a service on your machine by typing this command into a new console window 
+3. Get Mongo running as a service on your machine by typing this command into a new console window.  We'll remove any old containers called jlmongo first, don't worry if this errors 
 ```
-docker rm --force jlmongo || docker run -d --name jlmongo -p 27017:27017 jujhars13/dev-test-generalist-mongo:latest
-```
-
-4. Once the container is up and running. Import the test bike schema by running this command in
-```
-docker exec jlmongo mongoimport --db jl --collection bike /schema/bike.json --jsonArray
+docker rm --force jlmongo
+docker run -d --name jlmongo -p 27017:27017 jujhars13/dev-test-generalist-mongo:latest
 ```
 
-5. Test your mongo db works by showing all the records in the `bike` collection in the `local` db:
+4. Once the container is up and running. Import the bike schema by running this command in
 ```
-docker exec jlmongo mongo --eval "db.collection.find()"
+docker exec jlmongo mongoimport --collection bike /schema/bike.json --jsonArray
+```
+
+5. Test your mongo db works by showing all the records in the `bike` collection in the default `test` db:
+```
+docker exec jlmongo mongo --eval "db.getCollection('bike').find({})"
 ```
 
 **Notes**
 - If you shutdown your machine or do something bad to your database, simply trash your db and follow instructions 3-4
 - There is no username and password for your local db
-- The database is `jl`
-- The collection is `bike`
+- The default database is `test`, the default collection is `bike` with the data in it
 - The local Mongo instance sits on the default **TCP:27017** port you may have to tweak this if you're already running a local Mongo instance of your own
 - We suggest you use a Mongo db browser tool like [Robomongo](https://robomongo.org/)
-
 
 
 ### Assumptions:
