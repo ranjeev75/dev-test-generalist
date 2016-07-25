@@ -62,7 +62,7 @@ docker exec jlmongo mongoimport --db local --collection bike /schema/bike.json -
 
 If you shutdown your machine simply follow instructions 3 -4
 
-**NB** If you get an error from docker saying that the container already exists simply run this command to blat it and start again with a fresh instance `docker rm --force jlmongo`
+**NB** If you get an error from docker saying that the container name is already in use simply run this command to blat it and start again with a fresh instance `docker rm --force jlmongo`
 
 
 ### Assumptions:
