@@ -15,7 +15,7 @@ To complete this task, you must:
 - Create a project **README.md** where you'll put your project description, project setup, notes, assumptions etc...
 - When finished send over the GitHub repo and any other links
 - You will need to install docker on your machine to get your database working, it is suggested that you use the latest beta version of docker with it's native hosting features for OSX and Windows users.
-- Provide CURL based examples on how to interact with your API (GET, POST and DELETE)
+- Provide CURL based examples on how to interact with your API (GET and POST)
 - The database layer is provided to you via Mongo in a Docker container, the instructions below will start the Mongo 3.3 database on your machine and populate it with sample bike data for your api
 - Use any modern language you see fit to get the job done, obviously it will have to work with Mongo 3.3
 
@@ -24,11 +24,11 @@ As a front-end dev user, or as a command line dev user
 Assuming that all authentication and security has been handled by another layer in the application
 I would like API endpoints that models bikes (see Sample Bike Schema)
 - I would like to be able to see all bikes (GET the entire collection)
-- I would like to see an individual bike (GET an item)
-- I would like to delete an individual bike (DELETE from collection)
-- I would like to add a new bike (POST to collection)
-- I would like the interface to the API to be restful
-- I would like to interact with the API using CURL or postman
+- I would like to see an individual bike (GET an item) given its `bikeId`
+- I would like to add a new bike (POST to collection) 
+- I would like the interface to the API to be RESTful
+- I would like to interact with the API using [curl](https://curl.haxx.se/) or [postman](https://www.getpostman.com/)
+- I am not concerned DELETE and PUT at this time
 
 #### Sample Bike schema
 To give you an idea of the documents (records) of what's in the Mongo `bike` collection in the `test` db.  This is a sample schema for bikes, you can add/modify fields as you see fit:
