@@ -10,7 +10,7 @@ If you start to go way over time then just submit what you have and create a lis
 ### Assignment Details
 To complete this task, you must:
 
-- read the user story below and create an API framework and code to fulfil the requirements of the story
+- Read the user story below and create an API framework and code to fulfil the requirements of the story
 - Fork this Github repository for the task where you will **continuously** commit your code
 - Create a project **README.md** where you'll put your project description, project setup, notes, assumptions etc...
 - When finished send over the GitHub repo and any other links
@@ -31,7 +31,7 @@ I would like API endpoints that models bikes (see Sample Bike Schema)
 - I would like to interact with the API using CURL or postman
 
 #### Sample Bike schema
-To give you an idea of what's in the mongo collection.  This is a sample schema for bikes, you can add/modify fields as you see fit.
+To give you an idea of the documents (records) of what's in the Mongo `bike` in the `local` db.  This is a sample schema for bikes, you can add/modify fields as you see fit.
 
 ```
 {
@@ -46,23 +46,33 @@ To give you an idea of what's in the mongo collection.  This is a sample schema 
 
 Follow these instructions to get the test database working on your machine:
 
-1. Ensure you have the latest version of Docker installed on your machine (Docker for Windows, and Docker for Mac that no longer use docker-machine).  [https://docs.docker.com/engine/installation/](https://docs.docker.com/engine/installation/)
+1. Ensure you have the latest version of Docker installed on your machine (Native Docker for Windows, and Docker for Mac that no longer use docker-machine) [https://docs.docker.com/engine/installation/](https://docs.docker.com/engine/installation/):
 
 2. Ensure the docker service is running on your machine and you can connect to it using the `docker info` command
 
-3. Get Mongo running on your machine by typing this command into a new console window (leave the window running, closing the window will close the db)
+3. Get Mongo running as a service on your machine by typing this command into a new console window 
 ```
-docker run -it --name jlmongo -p 27017:27017 jujhars13/dev-test-generalist-mongo
-```
-
-4. Import the test bike schema by running this command in
-```
-docker exec jlmongo mongoimport --db local --collection bike /schema/bike.json --jsonArray
+docker rm --force jlmongo || docker run -d --name jlmongo -p 27017:27017 jujhars13/dev-test-generalist-mongo:latest
 ```
 
-If you shutdown your machine simply follow instructions 3 -4
+4. Once the container is up and running. Import the test bike schema by running this command in
+```
+docker exec jlmongo mongoimport --db jl --collection bike /schema/bike.json --jsonArray
+```
 
-**NB** If you get an error from docker saying that the container name is already in use simply run this command to blat it and start again with a fresh instance `docker rm --force jlmongo`
+5. Test your mongo db works by showing all the records in the `bike` collection in the `local` db:
+```
+docker exec jlmongo mongo --eval "db.collection.find()"
+```
+
+**Notes**
+- If you shutdown your machine or do something bad to your database, simply trash your db and follow instructions 3-4
+- There is no username and password for your local db
+- The database is `jl`
+- The collection is `bike`
+- The local Mongo instance sits on the default **TCP:27017** port you may have to tweak this if you're already running a local Mongo instance of your own
+- We suggest you use a Mongo db browser tool like [Robomongo](https://robomongo.org/)
+
 
 
 ### Assumptions:
@@ -70,7 +80,7 @@ If you shutdown your machine simply follow instructions 3 -4
 - You must include installation and setup instructions in your **README.md**
 - You must include the usage instructions for GET, POST and DELETE as CURL based examples
 - Please list any other assumptions you may have made
-- Feel free to a micro-framework such as Flask/Express/Sinatra/Slim/Goji
+- Feel free to a micro-framework such as Flask (Python),Express (Node), Sinatra (Ruby), Slim (PHP), Goji (Go)
 
 ### Assessment Criteria
 Your application will be assessed on the following criteria (in order of importance):

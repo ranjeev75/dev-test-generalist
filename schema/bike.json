@@ -1,44 +1,44 @@
 [
-	{
-		"id": 1,
-		"name": "Litening C:68",
-		"description": "The bike for the professionals - thanks to our high-end C:68 Carbon frame and race optimized geometry.",
-  "price": "2909"
-	},
-	{
-		"id": 2,
-		"name": "Litening C:62",
-		"description": "A lightweight, dream bike for ambitious cyclists with a high-quality C:62 carbon frame.",
-  "price": "1909"
-	},
-	{
-		"id": 3,
-		"name": "Agree C:62",
-		"description": "With this bike, there are no compromises: C:62 Carbon frame, disc brakes and maximum aerodynamics it's ready for racing.",
-  "price": "4909"
-	},
-	{
-		"id": 4,
-		"name": "Attain GTC",
-		"description": "Comformatable on tours, lightweight carbon fiber frame and with the option of discs make a great all rounder.",
-  "price": "1509"
-	},
-	{
-		"id": 5,
-		"name": "Attain HPA",
-		"description": "A high-quality aluminum frame for long tours with high comfort levels, ergonomically balanced and complete with a disc option.",
-  "price": "1700"
-	},
-	{
-		"id": 6,
-		"name": "Cross Race",
-		"description": "Reliable through mud, wind and the harshest conditions even when racing.",
-  "price": "2700"
-	},
-	{
-		"id": 7,
-		"name": "SL Road",
-		"description": "With the SL road, it's quick and comfortable to work and you can even do a relaxing after work ride.",
-  "price": "1001"
-	}
+  {
+    "id": 1,
+    "name": "Litening C:68",
+    "description": "The bike for the professionals - thanks to our high-end C:68 Carbon frame and race optimized geometry.",
+    "price": "2909"
+  },
+  {
+    "id": 2,
+    "name": "Litening C:62",
+    "description": "A lightweight, dream bike for ambitious cyclists with a high-quality C:62 carbon frame.",
+    "price": "1909"
+  },
+  {
+    "id": 3,
+    "name": "Agree C:62",
+    "description": "With this bike, there are no compromises: C:62 Carbon frame, disc brakes and maximum aerodynamics it's ready for racing.",
+    "price": "4909"
+  },
+  {
+    "id": 4,
+    "name": "Attain GTC",
+    "description": "Comfortable on tours, lightweight carbon fiber frame and with the option of discs make a great all rounder.",
+    "price": "1509"
+  },
+  {
+    "id": 5,
+    "name": "Attain HPA",
+    "description": "A high-quality aluminum frame for long tours with high comfort levels, ergonomically balanced and complete with a disc option.",
+    "price": "1700"
+  },
+  {
+    "id": 6,
+    "name": "Cross Race",
+    "description": "Reliable through mud, wind and the harshest conditions even when racing.",
+    "price": "2700"
+  },
+  {
+    "id": 7,
+    "name": "SL Road",
+    "description": "With the SL road, it's quick and comfortable to work and you can even do a relaxing after work ride.",
+    "price": "1001"
+  }
 ]
