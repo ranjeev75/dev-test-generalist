@@ -49,20 +49,20 @@ Follow these instructions to get the test database working on your machine:
 1. Ensure you have the latest version of Docker installed on your machine (Native Docker for Windows, and Docker for Mac that no longer use docker-machine) [https://docs.docker.com/engine/installation/](https://docs.docker.com/engine/installation/):
 2. Ensure the docker service is running on your machine and you can connect to it using the `docker info` command
 3. Get Mongo running as a service on your machine by typing this command into a new console window.  We'll remove any old containers called jlmongo first, don't worry if this errors 
-```
+```bash
+#remove the old instance of the db if it exists
 docker rm --force jlmongo
+
+#start the Mongo container as a service
 docker run -d --name jlmongo -p 27017:27017 jujhars13/dev-test-generalist-mongo:latest
-```
-4. Once the container is up and running. Import the bike schema by running this command in
-```
+
+#Once the container is up and running. Import the bike schema by running this command in
 docker exec jlmongo mongoimport --collection bike /schema/bike.json --jsonArray
-```
-5. Test your mongo db works by showing all the records in the `bike` collection in the default `test` db:
-```
-docker exec jlmongo mongo --eval "db.getCollection('bike').find({})"
+
 ```
 
 **Notes**
+- Test your db works by `docker exec jlmongo mongo --eval "db.getCollection('bike').find({})"` 
 - If you shutdown your machine or do something bad to your database, simply trash your db and follow instructions 3-4
 - There is no username and password for your local db
 - The default database is `test`, the default collection is `bike` with the data in it
