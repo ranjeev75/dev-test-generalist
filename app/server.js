@@ -27,7 +27,6 @@ app.get("/allbikes", (req, res) => {
 //GETS specific document from collection defined by the bikeId
 app.get("/allbikes/:id", (req, res) => {
     db.collection('bike').findOne({bikeId: parseInt(req.params.id)}, (err, docs) => {
-        console.log(docs);
         var result = (docs === null) ? res.json({'Error':'This bikeId does not exist'}) : res.json(docs);
         (err) ? res.json({"Error": "Failed to get bikes info - " + err}) : result;
     });
@@ -42,7 +41,6 @@ app.post("/addbike",(req, res) => {
     postDB.find({},{bikeId:1}).sort({"bikeId":-1}).limit(1).toArray()
         .then(totalNumber => {
             newBike.bikeId = totalNumber[0].bikeId + 1;
-            //console.log(newBike);
             //Checks model received from POST request is not an empty field or undefined
             if(req.body.name === undefined || req.body.description === undefined || req.body.price === undefined || req.body.name === '' || req.body.description === '' || req.body.price === '') {
                 res.json({"error": "Must provide all fields"});
@@ -67,7 +65,6 @@ app.delete("/deletebike/:id", (req, res) => {
         .then(x => {
                 if (x != null){
                     postDB.deleteOne({bikeId: parseInt(req.params.id)}, (err, result) => {
-                        console.log(req.params);
                         (err) ? res.status(500).json({"error": "Failed to delete document. Error: " + err}) : res.status(201).json({"success": "Document deleted from bike collection - " + result});
                     });
                 }else{
