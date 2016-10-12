@@ -7,9 +7,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const MongoClient = require('mongodb').MongoClient;
+require('dotenv').config();
 
 //Connection to specific to specific hosted collection - change.
-const CONNECTION = 'mongodb://192.168.99.100:27017/test';
+const CONNECTION = process.env.DB_HOST+process.env.COLLECTION;
 
 //Use these to receive POSTs
 app.use(bodyParser.json());
