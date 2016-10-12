@@ -1,0 +1,29 @@
+{
+  "name": "dev-test-generalist",
+  "version": "1.0.0",
+  "description": "JL_DevTask",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ranjeev75/dev-test-generalist.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ranjeev75/dev-test-generalist/issues"
+  },
+  "homepage": "https://github.com/ranjeev75/dev-test-generalist#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "connect": "^3.5.0",
+    "express": "^4.14.0",
+    "mongodb": "^2.2.10"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}

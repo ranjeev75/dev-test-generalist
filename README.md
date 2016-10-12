@@ -26,7 +26,7 @@ I would like API endpoints that models bikes (see Sample Bike Schema)
 - I would like to be able to see all bikes (GET the entire collection)
 - I would like to see an individual bike (GET an item) given its `bikeId`
 - I would like to add a new bike (POST to collection) 
-- I would like the interface to the API to be RESTful
+- I would like the interface to the API to be RESTful192.168.99.100
 - I would like to interact with the API using [curl](https://curl.haxx.se/) or [postman](https://www.getpostman.com/)
 - I am not concerned DELETE and PUT at this time
 
