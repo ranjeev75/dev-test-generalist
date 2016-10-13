@@ -1,23 +1,8 @@
-# Full Stack Dev Task
+# Completed Full Stack Dev Task
 
-Here's a back-end oriented assessment that we'd like you to complete in approx one week.
+As per the provided instructions and the **User story** requirements the task has been completed to enable the user to follow the RESTful endpoints to GET, POST and DELETE items from and/or to the provided 'bike' collection.
 
-## The task
-We estimate that this task will take about **6-10 hours** of contiguous development.  Feel free to develop in a non-contiguous manner.
-If you start to go way over time then just submit what you have and create a list in your project's **README.md** of anything else that would have liked to add/do given the time.
-
-
-### Assignment Details
-To complete this task, you must:
-
-- Read the user story below and create an API framework and code to fulfil the requirements of the story
-- Fork this Github repository for the task where you will **continuously** commit your code
-- Create a project **README.md** where you'll put your project description, project setup, notes, assumptions etc...
-- When finished send over the GitHub repo and any other links
-- You will need to install docker on your machine to get your database working, it is suggested that you use the latest beta version of docker with it's native hosting features for OSX and Windows users.
-- Provide CURL based examples on how to interact with your API (GET and POST)
-- The database layer is provided to you via Mongo in a Docker container, the instructions below will start the Mongo 3.3 database on your machine and populate it with sample bike data for your api
-- Use any modern language you see fit to get the job done, obviously it will have to work with Mongo 3.3
+Please refer to the User story below as a reference to the completed task. To run the application on your machine refer to the installation and setup instructions below.
 
 #### The User story
 As a front-end dev user, or as a command line dev user
@@ -26,30 +11,29 @@ I would like API endpoints that models bikes (see Sample Bike Schema)
 - I would like to be able to see all bikes (GET the entire collection)
 - I would like to see an individual bike (GET an item) given its `bikeId`
 - I would like to add a new bike (POST to collection) 
-- I would like the interface to the API to be RESTful192.168.99.100
+- I would like the interface to the API to be RESTful
 - I would like to interact with the API using [curl](https://curl.haxx.se/) or [postman](https://www.getpostman.com/)
 - I am not concerned DELETE and PUT at this time
 
-#### Sample Bike schema
-To give you an idea of the documents (records) of what's in the Mongo `bike` collection in the `test` db.  This is a sample schema for bikes, you can add/modify fields as you see fit:
+#Assumptions
+- The application is built in Node.js using the Express framework. Can be [installed here](https://nodejs.org/en/download/).
+- Used the Mocha/Chai framework for testing the application.
+- Project can be run in both development or test mode.
+- Interaction with the application via **curl** 
+- Database connection settings are held in a local .env file to hide credentials from public. 
 
-```
-{
-  "id": 1,
-  "name": "Litening C:68 super trike",
-  "description": "The trike for professional 4 year old cyclists.  Full carbon frame, complete with novelty horn",
-  "price": "5006.33"
-}
-```
+##Installation and setup
 
-### Database instructions
+###1. Database instructions
 
 Follow these instructions to get the test database working on your machine:
 
 1. Ensure you have the latest version of Docker installed on your machine (Native Docker for Windows, and Docker for Mac that no longer use docker-machine) [https://docs.docker.com/engine/installation/](https://docs.docker.com/engine/installation/).
 2. Ensure the docker service is running on your machine and you can connect to it using the `docker info` command
-3. Get Mongo running as a service on your machine by typing the following commands into a console window.
-```bash
+3. Get Mongo running as a service on your machine by typing the following commands below into a console window.
+4. Use a Mongo GUI tool like [Robomongo](https://robomongo.org/) to view test collection and documents. 
+
+```
 #A. remove the old instance of the db if it exists, don't worry if this errors 
 docker rm --force jlmongo
 
@@ -67,27 +51,53 @@ docker exec jlmongo mongoimport --collection bike /schema/bike.json --jsonArray
 - There is no username and password for your local db
 - The default database is `test`, the default collection is `bike` with the data in it
 - The local Mongo instance sits on the default **TCP:27017** port you may have to tweak this if you're already running a local Mongo instance of your own
-- We suggest you use a Mongo GUI tool like [Robomongo](https://robomongo.org/) to make your life easier 
+ 
+###2. Install Application
+
+- Either fork or clone the repo onto your local machine.    
+- With node.js installed onto your machine run the command ```npm install``` from the app directory in a console.
+    - This will install all listed dependencies from the **package.json** file into the project locally.
+    - If this is not successful then **dependencies** will have to be installed manually using the ```npm install **packageName** --save``` command. 
+    Similarly all **devDependencies** will have to be installed with the ```npm install **packageName** --save-dev``` command.   
+- The Express framework and relevant modules should be installed onto your machine. All node modules will be installed into the **node_modules** folder.
+- To run the app via curl it can be downloaded [here](https://curl.haxx.se/). 
+       
+###3. Setup Application    
+
+- set up the database connection with environment variables from an **.env** file.
+- In the root of the app directory create a file named ".env".    
+ - Populate the file with the following:
+ ```
+ DB_HOST = 'mongodb://192.168.99.100:27017/'
+ COLLECTION = 'test'
+ ```
+
+- This file will remain local as it will be included in .gitignore. 
+
+##Run Application
+
+1. To run the application, run an instance of the server by running the command ```npm run dev```. The console should show the server is running as **Server is alive on port 9999....**.
+2. Open up another console to run **CURL** commands.
+3. To see the app's api endpoint GET all bikes from the **test collection** run command:
+    - ```curl localhost:9999/allbikes```
+4. To see the app's api endpoint GET a specific bike by ```bikeId``` from the **test collection** run command:
+      - ```curl localhost:9999/allbikes/:id```. Here```:id``` is the ```bikeId``` e.g. bikeId=4
+5. To see the app's api endpoint POST a new bike document to the **test collection** run command:
+          - ```curl --data "name=New Bike&price=99999&description=Mountain bike"  http://localhost:9999/addbike```. All three fields (name, description and price) must be populated in order to insert a new document into the collection.  
+6. To see the app's api endpoint DELETE a specific bike by ```bikeId``` from the **test collection** run command:
+      - ```curl -X "DELETE" localhost:9999/deletebike/:id```. Here```:id``` is the ```bikeId``` e.g. bikeId=3     
+
+##Test Application
+
+A testing framework (mocha/chai) has been included in the ```test/unitTests.js``` folder, running unit tests on each of the GET, POST and DELETE commands running on the server. To run these tests:
+
+  1. Kill off any live servers.
+  2. In a console run command ```npm run test```
+  3. Check console to see all tests have passed.
+ 
+ 
 
 
-### Assumptions:
-- API API must output JSON in it's responsees
-- You must include installation and setup instructions in your **README.md**
-- You must include the usage instructions for GET, POST and DELETE as CURL based examples
-- Please list any other assumptions you may have made
-- Feel free to a micro-framework such as Flask (Python),Express (Node), Sinatra (Ruby), Slim (PHP), Goji (Go)
 
-### Assessment Criteria
-Your application will be assessed on the following criteria (in order of importance):
 
-- Approach
-- Code organisation, commenting and use of GitHub
-- Quality of setup instructions in your **README.md**
-- Quality of api documentation in your **README.md**
-- Maintainability
-- *bonus points* if you unit test your models and include test instructions
-- *bonus points* if you can host the api code in a docker container and link it to the Mongo Docker container
 
-We're trying to see your thought processes with this task. What's more important to us is how you approach the task, rather than the actual final output itself.
-
-Looking forward to seeing your project :-)
