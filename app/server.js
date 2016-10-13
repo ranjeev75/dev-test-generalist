@@ -9,7 +9,7 @@ const app = express();
 const MongoClient = require('mongodb').MongoClient;
 require('dotenv').config();
 
-//Connection to specific to specific hosted collection - change.
+//Connection to specific to specific hosted collection - create and update .env file..
 const CONNECTION = process.env.DB_HOST+process.env.COLLECTION;
 
 //Use these to receive POSTs
@@ -19,6 +19,10 @@ app.use(bodyParser.urlencoded({
 }));
 
 //GETS all documents from collection
+app.get("/", (req, res) => {
+    res.json({'JL_Task': 'To check RESTful API, please use the /allbikes, /allbikes/id, /addbike/key=value and deletebike/id endpoints'});
+});
+
 app.get("/allbikes", (req, res) => {
     db.collection('bike').find({}).toArray((err, docs) => {
         (err) ? res.json({"Error": "Failed to get bikes info - " + err}) : res.json(docs);
@@ -28,7 +32,7 @@ app.get("/allbikes", (req, res) => {
 //GETS specific document from collection defined by the bikeId
 app.get("/allbikes/:id", (req, res) => {
     db.collection('bike').findOne({bikeId: parseInt(req.params.id)}, (err, docs) => {
-        var result = (docs === null) ? res.json({'Error':'This bikeId does not exist'}) : res.json(docs);
+        let result = (docs === null) ? res.json({'Error':'This bikeId does not exist'}) : res.json(docs);
         (err) ? res.json({"Error": "Failed to get bikes info - " + err}) : result;
     });
 });
@@ -66,10 +70,10 @@ app.delete("/deletebike/:id", (req, res) => {
         .then(x => {
                 if (x != null){
                     postDB.deleteOne({bikeId: parseInt(req.params.id)}, (err, result) => {
-                        (err) ? res.status(500).json({"error": "Failed to delete document. Error: " + err}) : res.status(201).json({"success": "Document deleted from bike collection - " + result});
+                        (err) ? res.status(500).json({"error": "Failed to delete document. Error: " + err}) : res.status(200).json({"deleted": "Document deleted from bike collection - " + result});
                     });
                 }else{
-                    res.json({"Fail": "Document id " + req.params.id + " does not exist"});
+                    res.json({"fail": "Document id " + req.params.id + " does not exist"});
                 }
             })
         .catch(
@@ -79,6 +83,7 @@ app.delete("/deletebike/:id", (req, res) => {
 });
 
 let db;
+
 MongoClient.connect(CONNECTION, (err, database) => {
     if(err) return console.warn(err);
     db = database;
@@ -86,3 +91,6 @@ MongoClient.connect(CONNECTION, (err, database) => {
         console.log("Server is alive on port 9999....");
     });
 });
+
+//To enable testing
+module.exports = app;
