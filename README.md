@@ -83,7 +83,7 @@ docker exec jlmongo mongoimport --collection bike /schema/bike.json --jsonArray
 4. To see the app's api endpoint GET a specific bike by ```bikeId``` from the **test collection** run command:
       - ```curl localhost:9999/allbikes/:id```. Here```:id``` is the ```bikeId``` e.g. bikeId=4
 5. To see the app's api endpoint POST a new bike document to the **test collection** run command:
-          - ```curl --data "name=New Bike&price=99999&description=Mountain bike"  http://localhost:9999/addbike```. All three fields (name, description and price) must be populated in order to insert a new document into the collection.  
+      - ```curl --data "name=New Bike&price=99999&description=Mountain bike"  http://localhost:9999/addbike```. All three fields (name, description and price) must be populated in order to insert a new document into the collection.  
 6. To see the app's api endpoint DELETE a specific bike by ```bikeId``` from the **test collection** run command:
       - ```curl -X "DELETE" localhost:9999/deletebike/:id```. Here```:id``` is the ```bikeId``` e.g. bikeId=3     
 

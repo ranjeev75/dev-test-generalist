@@ -70,6 +70,18 @@ describe('RESTful APIs', ()=> {
             });
     });
 
+    it('No bike found with /allbikes/:id ==> GET', (done) => {
+        chai.request(server)
+            .get('/allbikes/9999999999')
+            .end((err, res) => {
+                res.should.have.status(200);
+                res.body.should.be.a('object');
+                res.body.should.have.property('error');
+                res.body.error.should.be.a('string');
+                done();
+            });
+    });
+
     it('Post a new bike object into collection ==> POST', (done) => {
         chai.request(server)
             .post('/addbike')
@@ -78,8 +90,16 @@ describe('RESTful APIs', ()=> {
                 should.equal(err, null);
                 res.should.have.status(201);
                 res.body.should.be.a('object');
-                res.body.should.have.property("success");
-                res.body.success.should.be.a('string');
+                res.body.should.have.property("name");
+                res.body.name.should.be.a('string');
+                res.body.should.have.property("price");
+                res.body.price.should.be.a('string');
+                res.body.should.have.property("description");
+                res.body.description.should.be.a('string');
+                res.body.should.have.property("bikeId");
+                res.body.bikeId.should.be.a('number');
+                res.body.should.have.property("_id");
+                res.body._id.should.be.a('string');
                 done();
             });
     });

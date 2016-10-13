@@ -32,10 +32,12 @@ app.get("/allbikes", (req, res) => {
 //GETS specific document from collection defined by the bikeId
 app.get("/allbikes/:id", (req, res) => {
     db.collection('bike').findOne({bikeId: parseInt(req.params.id)}, (err, docs) => {
-        let result = (docs === null) ? res.json({'Error':'This bikeId does not exist'}) : res.json(docs);
+        let result = (docs === null) ? res.json({'error':'This bikeId does not exist'}) : res.json(docs);
+
         (err) ? res.json({"Error": "Failed to get bikes info - " + err}) : result;
     });
 });
+
 
 //POSTS new documents to collection
 app.post("/addbike",(req, res) => {
@@ -51,7 +53,7 @@ app.post("/addbike",(req, res) => {
                 res.json({"error": "Must provide all fields"});
             }else{
                 postDB.insertOne(newBike, (err) => {
-                    (err) ? res.status(500).json({"error": "Failed to insert document. Error: " + err}) : res.status(201).json({"success": "Document inserted into bike collection"});
+                    (err) ? res.status(500).json({"error": "Failed to insert document. Error: " + err}) : res.status(201).json(newBike);
                 })
             }
         })
@@ -60,6 +62,7 @@ app.post("/addbike",(req, res) => {
             console.warn('Promise rejected: (' + reason + ')');
         });
 });
+
 
 //DELETE specific document from collection by received bikeId
 app.delete("/deletebike/:id", (req, res) => {
@@ -82,8 +85,8 @@ app.delete("/deletebike/:id", (req, res) => {
         });
 });
 
-let db;
 
+let db;
 MongoClient.connect(CONNECTION, (err, database) => {
     if(err) return console.warn(err);
     db = database;
